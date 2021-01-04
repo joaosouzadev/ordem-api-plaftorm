@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ServicoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -42,6 +44,15 @@ class Servico
      */
     private $valor;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdemServico", mappedBy="servico")
+     */
+    private $ordensServicos;
+
+    public function __construct() {
+        $this->ordensServicos = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +90,36 @@ class Servico
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrdemServico[]
+     */
+    public function getOrdensServicos(): Collection
+    {
+        return $this->ordensServicos;
+    }
+
+    public function addOrdensServico(OrdemServico $ordensServico): self
+    {
+        if (!$this->ordensServicos->contains($ordensServico)) {
+            $this->ordensServicos[] = $ordensServico;
+            $ordensServico->setServico($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdensServico(OrdemServico $ordensServico): self
+    {
+        if ($this->ordensServicos->removeElement($ordensServico)) {
+            // set the owning side to null (unless already changed)
+            if ($ordensServico->getServico() === $this) {
+                $ordensServico->setServico(null);
+            }
+        }
 
         return $this;
     }

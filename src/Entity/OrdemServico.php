@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrdemServicoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -24,7 +25,12 @@ class OrdemServico
      */
     private $id;
 
-    // TODO: ADD $servico
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Servico", inversedBy="ordensServico")
+     * @ORM\JoinColumn()
+     * @Groups({"ordemServico:get", "ordemServico:post"})
+     */
+    private $servico;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Ordem", inversedBy="servicos")
@@ -81,6 +87,18 @@ class OrdemServico
     public function setOrdem(?Ordem $ordem): self
     {
         $this->ordem = $ordem;
+
+        return $this;
+    }
+
+    public function getServico(): ?Servico
+    {
+        return $this->servico;
+    }
+
+    public function setServico(?Servico $servico): self
+    {
+        $this->servico = $servico;
 
         return $this;
     }

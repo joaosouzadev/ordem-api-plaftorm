@@ -67,7 +67,7 @@ class Ordem
     private $equipamento;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrdemServico", mappedBy="ordem", cascade="all")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdemServico", mappedBy="ordem", cascade="all", orphanRemoval=true)
      * @Groups({"ordemServico:get", "ordemServico:post"})
      */
     private $servicos;

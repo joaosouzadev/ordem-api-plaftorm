@@ -34,55 +34,55 @@ class Cliente
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $nome;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $celular;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $cep;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $rua;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $numero;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $complemento;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $bairro;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"cliente:get"})
+     * @Groups({"cliente:get", "cliente:post"})
      */
     private $cidade;
 

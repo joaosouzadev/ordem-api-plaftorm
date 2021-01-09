@@ -56,13 +56,31 @@ class Ordem
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     * @Groups({"ordem:get"})
+     * @Groups({"ordem:get", "ordem:post"})
      */
     private $dataEntrada;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * @Groups({"ordem:get"})
+     */
+    private $hash;
+
+    /**
+     * @ORM\Column(type="decimal", precision=15, scale=2, nullable=true)
+     * @Groups({"ordem:get", "ordem:post"})
+     */
+    private $valor;
+
+    /**
+     * @ORM\Column(type="text", precision=15, scale=2, nullable=true)
+     * @Groups({"ordem:get", "ordem:post"})
+     */
+    private $observacoes;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"ordem:get", "ordem:post"})
      */
     private $equipamento;
 
@@ -167,6 +185,42 @@ class Ordem
                 $servico->setOrdem(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHash(): ?string
+    {
+        return $this->hash;
+    }
+
+    public function setHash(?string $hash): self
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    public function getValor(): ?string
+    {
+        return $this->valor;
+    }
+
+    public function setValor(?string $valor): self
+    {
+        $this->valor = $valor;
+
+        return $this;
+    }
+
+    public function getObservacoes(): ?string
+    {
+        return $this->observacoes;
+    }
+
+    public function setObservacoes(string $observacoes): self
+    {
+        $this->observacoes = $observacoes;
 
         return $this;
     }
